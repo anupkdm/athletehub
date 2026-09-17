@@ -81,7 +81,7 @@ export const AthleteCard = ({ athlete, onViewProfile, onToggleSave, isSaved }) =
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '0.5rem',
-        background: 'rgba(255, 255, 255, 0.04)',
+        background: '#f8fafc',
         padding: '0.6rem',
         borderRadius: '10px',
         marginBottom: '1rem',
