@@ -131,7 +131,6 @@ export const Navbar = ({ activeTab, setActiveTab, onOpenAuthModal }) => {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{
-            display: 'none',
             background: 'transparent',
             border: 'none',
             color: 'var(--text-primary)',
@@ -142,6 +141,42 @@ export const Navbar = ({ activeTab, setActiveTab, onOpenAuthModal }) => {
           {mobileMenuOpen ? <X style={{ width: '24px' }} /> : <Menu style={{ width: '24px' }} />}
         </button>
       </div>
+
+      {/* Mobile Navigation Drawer Dropdown */}
+      {mobileMenuOpen && (
+        <div className="mobile-nav-drawer" style={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.4rem',
+          paddingTop: '0.75rem',
+          borderTop: '1px solid var(--border-color)',
+          marginTop: '0.5rem'
+        }}>
+          {navItems.map(item => (
+            <button
+              key={item.id}
+              onClick={() => {
+                setActiveTab(item.id);
+                setMobileMenuOpen(false);
+              }}
+              style={{
+                background: activeTab === item.id ? 'rgba(2, 132, 199, 0.2)' : 'rgba(255, 255, 255, 0.03)',
+                color: activeTab === item.id ? 'var(--accent-blue)' : 'var(--text-primary)',
+                border: '1px solid var(--border-color)',
+                padding: '0.65rem 1rem',
+                borderRadius: '10px',
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                textAlign: 'left',
+                cursor: 'pointer'
+              }}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
     </header>
   );
 };

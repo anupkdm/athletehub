@@ -43,7 +43,7 @@ export const Athletes = ({ onSelectAthlete }) => {
         <p style={{ color: 'var(--text-muted)' }}>Search and filter verified sports talent across states, districts, and villages.</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '1.75rem' }}>
+      <div className="athlete-discovery-grid">
         {/* Filter Sidebar */}
         <aside className="glass-card" style={{ height: 'fit-content' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.2rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.6rem' }}>
