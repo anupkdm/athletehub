@@ -26,7 +26,7 @@ export const Footer = ({ setActiveTab }) => {
               }}>
                 <Trophy style={{ color: '#ffffff', width: '20px' }} />
               </div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>Sports<span className="gradient-text">Talent</span></h3>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>Athlete<span className="gradient-text">Hub</span></h3>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '1rem' }}>
               Empowering talented athletes from rural and underserved communities by connecting them directly with certified coaches, scouts, trials, and sports organizations.
@@ -83,7 +83,7 @@ export const Footer = ({ setActiveTab }) => {
           fontSize: '0.8rem',
           color: 'var(--text-muted)'
         }}>
-          <div>© 2026 Full-Stack Sports Talent Identification Platform. All rights reserved.</div>
+          <div>© 2026 AthleteHub - NextGen Athlete Skill Scout Platform. All rights reserved.</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
             Built with <Heart style={{ width: '14px', color: '#ef4444' }} /> for rural & underserved athletic champions.
           </div>

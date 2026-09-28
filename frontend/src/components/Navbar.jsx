@@ -53,10 +53,10 @@ export const Navbar = ({ activeTab, setActiveTab, onOpenAuthModal }) => {
         </div>
         <div>
           <h1 style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.1 }}>
-            Sports<span className="gradient-text">Talent</span>
+            Athlete<span className="gradient-text">Hub</span>
           </h1>
           <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
-            Talent Identification Platform
+            NextGen Athlete Skill Scout Platform
           </span>
         </div>
       </div>
