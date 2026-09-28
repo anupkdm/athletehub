@@ -14,19 +14,12 @@ export const Footer = ({ setActiveTab }) => {
           
           {/* Col 1 */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <div style={{
-                width: '36px',
-                height: '36px',
-                borderRadius: '10px',
-                background: 'linear-gradient(135deg, #0284c7 0%, #f97316 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Trophy style={{ color: '#ffffff', width: '20px' }} />
-              </div>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>Athlete<span className="gradient-text">Hub</span></h3>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+              <img
+                src="/logo.png"
+                alt="AthleteHub"
+                style={{ height: '42px', objectFit: 'contain' }}
+              />
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '1rem' }}>
               Empowering talented athletes from rural and underserved communities by connecting them directly with certified coaches, scouts, trials, and sports organizations.

@@ -37,28 +37,13 @@ export const Navbar = ({ activeTab, setActiveTab, onOpenAuthModal }) => {
       {/* Brand Logo */}
       <div 
         onClick={() => setActiveTab('home')} 
-        style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}
+        style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}
       >
-        <div style={{
-          width: '42px',
-          height: '42px',
-          borderRadius: '12px',
-          background: 'linear-gradient(135deg, #0284c7 0%, #f97316 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 0 15px rgba(2, 132, 199, 0.4)'
-        }}>
-          <Trophy style={{ color: '#ffffff', width: '24px', height: '24px' }} />
-        </div>
-        <div>
-          <h1 style={{ fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.1 }}>
-            Athlete<span className="gradient-text">Hub</span>
-          </h1>
-          <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
-            NextGen Athlete Skill Scout Platform
-          </span>
-        </div>
+        <img 
+          src="/logo.png" 
+          alt="AthleteHub - NextGen Athlete Skill Scout Platform" 
+          style={{ height: '48px', objectFit: 'contain' }}
+        />
       </div>
 
       {/* Main Desktop Navigation Items */}
