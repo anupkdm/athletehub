@@ -42,7 +42,7 @@ export const Navbar = ({ activeTab, setActiveTab, onOpenAuthModal }) => {
         <img 
           src="/logo.png" 
           alt="AthleteHub - NextGen Athlete Skill Scout Platform" 
-          style={{ height: '48px', objectFit: 'contain' }}
+          style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
         />
       </div>
 
