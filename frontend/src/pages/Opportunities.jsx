@@ -4,9 +4,52 @@ import { OpportunityCard } from '../components/OpportunityCard';
 import { Modal } from '../components/Modal';
 import { Target, Search, Filter, CheckCircle2 } from 'lucide-react';
 
+const DEFAULT_OPPORTUNITIES = [
+  {
+    _id: 'opp1',
+    title: 'National Grassroots Under-20 Football Scouting Trials',
+    type: 'Sports Trial',
+    sport: 'Football',
+    organization: 'National High Performance Sports Center',
+    location: 'Jawaharlal Nehru Stadium, New Delhi',
+    deadline: '2026-10-30',
+    description: 'Comprehensive 3-day open combine trial for elite village strikers, midfielders, and defenders aiming for national academy selection.'
+  },
+  {
+    _id: 'opp2',
+    title: 'Rural Sprint & Track Talent Identification Camp',
+    type: 'Talent Hunt',
+    sport: 'Athletics & Track',
+    organization: 'Apex Talent Scout Agency',
+    location: 'Kalinga Stadium, Bhubaneswar, Odisha',
+    deadline: '2026-10-25',
+    description: 'Full sponsorship and equipment scholarship trial for fast rural sprinters from Odisha, Jharkhand, and Bengal.'
+  },
+  {
+    _id: 'opp3',
+    title: 'State Pro Kabaddi League Selection Trials',
+    type: 'Sports Trial',
+    sport: 'Kabaddi',
+    organization: 'Haryana Kabaddi League Association',
+    location: 'Tau Devi Lal Sports Complex, Gurgaon',
+    deadline: '2026-10-20',
+    description: 'Direct trial for raiders and defenders seeking placement in upcoming seasonal Pro Kabaddi franchise teams.'
+  },
+  {
+    _id: 'opp4',
+    title: 'Fast Bowlers Speed & Swing High Performance Camp',
+    type: 'Training Camp',
+    sport: 'Cricket',
+    organization: 'National Cricket Academy',
+    location: 'M. Chinnaswamy Stadium, Bengaluru',
+    deadline: '2026-11-05',
+    description: 'Specialized 2-week fast bowling combine for pace bowlers recording 135+ km/h in regional trials.'
+  }
+];
+
 export const Opportunities = ({ currentUser, onOpenAuth }) => {
-  const [opportunities, setOpportunities] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [opportunities, setOpportunities] = useState(DEFAULT_OPPORTUNITIES);
+  const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({ search: '', sport: 'All', type: 'All' });
   
   const [applyModal, setApplyModal] = useState(false);
@@ -16,12 +59,31 @@ export const Opportunities = ({ currentUser, onOpenAuth }) => {
   const [applyError, setApplyError] = useState('');
 
   const fetchOpportunities = async () => {
-    setLoading(true);
     try {
       const res = await api.getOpportunities(filters);
-      if (res.success) setOpportunities(res.data);
+      if (res && res.success && res.data && res.data.length > 0) {
+        setOpportunities(res.data);
+      } else {
+        let list = [...DEFAULT_OPPORTUNITIES];
+        if (filters.sport && filters.sport !== 'All') {
+          list = list.filter(o => o.sport.toLowerCase().includes(filters.sport.toLowerCase()));
+        }
+        if (filters.type && filters.type !== 'All') {
+          list = list.filter(o => o.type === filters.type);
+        }
+        if (filters.search) {
+          const s = filters.search.toLowerCase();
+          list = list.filter(o =>
+            o.title.toLowerCase().includes(s) ||
+            o.organization.toLowerCase().includes(s) ||
+            o.location.toLowerCase().includes(s)
+          );
+        }
+        setOpportunities(list);
+      }
     } catch (e) {
       console.error(e);
+      setOpportunities(DEFAULT_OPPORTUNITIES);
     } finally {
       setLoading(false);
     }
