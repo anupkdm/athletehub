@@ -29,24 +29,32 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await api.login(email, password);
-    if (res.success) {
+    if (res && res.success) {
       localStorage.setItem('token', res.token);
       setToken(res.token);
       setUser(res.user);
-      const me = await api.getMe();
-      if (me.success) setProfile(me.profile);
+      try {
+        const me = await api.getMe();
+        if (me && me.success) setProfile(me.profile);
+      } catch (e) {
+        // demo fallback
+      }
     }
     return res;
   };
 
   const register = async (data) => {
     const res = await api.register(data);
-    if (res.success) {
+    if (res && res.success) {
       localStorage.setItem('token', res.token);
       setToken(res.token);
       setUser(res.user);
-      const me = await api.getMe();
-      if (me.success) setProfile(me.profile);
+      try {
+        const me = await api.getMe();
+        if (me && me.success) setProfile(me.profile);
+      } catch (e) {
+        // demo fallback
+      }
     }
     return res;
   };

@@ -32,13 +32,13 @@ export const AuthModal = ({ isOpen, onClose }) => {
         res = await register({ ...formData, role });
       }
 
-      if (res.success) {
+      if (res && res.success) {
         onClose();
       } else {
-        setError(res.message || 'Authentication failed');
+        setError(res?.message || 'Authentication failed. Please check your credentials.');
       }
     } catch (err) {
-      setError('An unexpected error occurred');
+      setError(err?.message || 'Authentication error. Please try again.');
     } finally {
       setLoading(false);
     }
