@@ -20,7 +20,7 @@ export const api = {
       const data = await res.json();
       return data;
     } catch (e) {
-      // Fallback response if API server is offline or unreachable
+      const role = email.includes('coach') ? 'Coach' : email.includes('scout') ? 'Scout' : email.includes('admin') ? 'Admin' : 'Athlete';
       return {
         success: true,
         token: 'demo_token_' + Date.now(),
@@ -28,10 +28,13 @@ export const api = {
           id: 'user_' + Date.now(),
           name: email.split('@')[0],
           email: email,
-          role: email.includes('coach') ? 'Coach' : email.includes('scout') ? 'Scout' : email.includes('admin') ? 'Admin' : 'Athlete',
+          role: role,
           avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400',
           isVerified: true
-        }
+        },
+        profile: role === 'Scout' ? { organization: 'Apex Talent Scout Network', region: 'National', sportsOfInterest: ['Football', 'Athletics & Track'], verificationStatus: 'Verified' }
+               : role === 'Coach' ? { organization: 'National Sports Academy', sport: 'Football', experienceYears: 8, location: 'New Delhi' }
+               : { sport: 'Football', position: 'Forward', location: { state: 'Punjab', villageCity: 'Khanna Village' }, age: 19, stats: { overallScore: 92, sprintSpeedKmh: 34.2, verticalJumpCm: 72 } }
       };
     }
   },
@@ -46,7 +49,7 @@ export const api = {
       const json = await res.json();
       return json;
     } catch (e) {
-      // Fallback response for instant registration simulation
+      const role = data.role || 'Scout';
       return {
         success: true,
         token: 'demo_token_' + Date.now(),
@@ -54,10 +57,13 @@ export const api = {
           id: 'user_' + Date.now(),
           name: data.name || 'Registered User',
           email: data.email,
-          role: data.role || 'Scout',
+          role: role,
           avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400',
           isVerified: true
-        }
+        },
+        profile: role === 'Scout' ? { organization: data.organization || 'Global Sports Scout Network', region: 'National', sportsOfInterest: [data.sport || 'Football'], verificationStatus: 'Verified' }
+               : role === 'Coach' ? { organization: data.organization || 'National High Performance Center', sport: data.sport || 'Football', experienceYears: 5, location: 'New Delhi' }
+               : { sport: data.sport || 'Football', position: data.position || 'Forward', location: { state: 'Punjab', villageCity: 'Khanna Village' }, age: 19, stats: { overallScore: 90, sprintSpeedKmh: 33.5, verticalJumpCm: 70 } }
       };
     }
   },

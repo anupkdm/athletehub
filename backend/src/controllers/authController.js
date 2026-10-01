@@ -29,9 +29,9 @@ exports.register = async (req, res, next) => {
       role: role || 'Athlete'
     });
 
-    // Create corresponding sub-profile depending on role
+    let profile = null;
     if (user.role === 'Athlete') {
-      await AthleteProfile.create({
+      profile = await AthleteProfile.create({
         user: user._id,
         sport: sport || 'Football',
         position: position || 'Forward / Winger',
@@ -40,14 +40,14 @@ exports.register = async (req, res, next) => {
         gender: gender || 'Male'
       });
     } else if (user.role === 'Coach') {
-      await CoachProfile.create({
+      profile = await CoachProfile.create({
         user: user._id,
         organization: organization || 'National Sports Academy',
         sport: sport || 'Football',
         location: 'New Delhi'
       });
     } else if (user.role === 'Scout') {
-      await ScoutProfile.create({
+      profile = await ScoutProfile.create({
         user: user._id,
         organization: organization || 'Global Sports Scouting Network',
         sportsOfInterest: [sport || 'Football']
@@ -66,7 +66,8 @@ exports.register = async (req, res, next) => {
         role: user.role,
         avatar: user.avatar,
         isVerified: user.isVerified
-      }
+      },
+      profile
     });
   } catch (error) {
     next(error);
